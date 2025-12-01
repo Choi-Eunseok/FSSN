@@ -7,7 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="Protos\greet.proto" GrpcServices="Server"/>
+        <Protobuf Include="Protos\hello_gRPC\hello_grpc.proto" GrpcServices="Server" />
+        <Protobuf Include="Protos\bidirectional-streaming\bidirectional.proto" GrpcServices="Server" />
+        <Protobuf Include="Protos\clientstreaming\clientstreaming.proto" GrpcServices="Server" />
+        <Protobuf Include="Protos\serverstreaming\serverstreaming.proto" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>
