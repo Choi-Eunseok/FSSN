@@ -1,6 +1,10 @@
 using GrpcDemo.Server.Services;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.ConfigureKestrel(options =>
+    options.ListenLocalhost(50051, o =>  o.Protocols = HttpProtocols.Http2));
 
 builder.Services.AddGrpc();
 
