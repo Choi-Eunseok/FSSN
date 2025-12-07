@@ -1,28 +1,38 @@
 ﻿
+using System;
+using System.Threading.Tasks;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GrpcDemo.Client.Views;
 
 namespace GrpcDemo.Client.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private ViewModelBase currentView;
-    
-    public HelloGrpcViewModel HelloGrpc { get; }
-    public BidirectionalViewModel Bidirectional { get; }
-    
-    public IRelayCommand ShowHelloCommand { get; }
-    public IRelayCommand ShowBidirectionalCommand { get; }
+    private UserControl currentView;
     
     public MainWindowViewModel()
     {
-        HelloGrpc = new HelloGrpcViewModel();
-        Bidirectional = new BidirectionalViewModel();
-        
-        CurrentView = HelloGrpc;
-        
-        ShowHelloCommand = new RelayCommand(() => CurrentView = HelloGrpc);
-        ShowBidirectionalCommand = new RelayCommand(() => CurrentView = Bidirectional);
+        CurrentView = new HelloGrpcView();
+    }
+    
+    [RelayCommand]
+    private async Task ShowHello()
+    {
+        if (CurrentView.DataContext is IAsyncDisposable disposable)
+            await disposable.DisposeAsync();
+
+        CurrentView = new HelloGrpcView();
+    }
+    
+    [RelayCommand]
+    private async Task ShowBidirectional()
+    {
+        if (CurrentView.DataContext is IAsyncDisposable disposable)
+            await disposable.DisposeAsync();
+
+        CurrentView = new BidirectionalView();
     }
 }

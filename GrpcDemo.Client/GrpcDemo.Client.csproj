@@ -33,7 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Protobuf Include="Protos\bidirectional-streaming\bidirectional.proto">
+      <Protobuf Include="Protos\bidirectional_streaming\bidirectional.proto">
           <GrpcServices>Client</GrpcServices>
           <ProtoRoot>Protos</ProtoRoot>
       </Protobuf>

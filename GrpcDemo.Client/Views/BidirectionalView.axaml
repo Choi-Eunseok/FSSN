@@ -1,0 +1,80 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:GrpcDemo.Client.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GrpcDemo.Client.Views.BidirectionalView"
+             x:DataType="vm:BidirectionalViewModel">
+
+    <UserControl.DataContext>
+        <vm:BidirectionalViewModel />
+    </UserControl.DataContext>
+
+    <DockPanel Margin="8">
+        
+        <ListBox ItemsSource="{Binding Logs}"
+                 DockPanel.Dock="Top"
+                 Height="250"
+                 Margin="0,0,0,8" />
+        
+        <StackPanel Orientation="Vertical"
+                    DockPanel.Dock="Bottom"
+                    Spacing="4">
+
+            <TextBlock Text="Messages to send (Bidirectional)"
+                       FontWeight="Bold"
+                       Margin="0,0,0,4"/>
+            
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <TextBlock Text="#1"
+                           Width="24"
+                           VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Message1}"
+                         Width="300"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <TextBlock Text="#2"
+                           Width="24"
+                           VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Message2}"
+                         Width="300"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <TextBlock Text="#3"
+                           Width="24"
+                           VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Message3}"
+                         Width="300"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <TextBlock Text="#4"
+                           Width="24"
+                           VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Message4}"
+                         Width="300"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <TextBlock Text="#5"
+                           Width="24"
+                           VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Message5}"
+                         Width="300"/>
+            </StackPanel>
+
+            <Button Content="Send all"
+                    Command="{Binding SendAllCommand}"
+                    Margin="0,8,0,0"
+                    HorizontalAlignment="Left" />
+        </StackPanel>
+    </DockPanel>
+</UserControl>
