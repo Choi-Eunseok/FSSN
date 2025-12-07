@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package dashboard;
+
+service LogService {
+  rpc StreamLogs(google.protobuf.Empty) returns (stream LogEntry) {}
+}
+
+message LogEntry {
+  string time = 1;
+  string source = 2;
+  string direction = 3;
+  string message = 4;
+}
