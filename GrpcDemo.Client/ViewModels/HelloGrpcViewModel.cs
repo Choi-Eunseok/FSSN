@@ -18,6 +18,6 @@ public partial class HelloGrpcViewModel : ViewModelBase
     [RelayCommand]
     private async Task MyFunction()
     {
-        resultValue = await _helloGrpc.MyFunction(inputValue);
+        ResultValue = await _helloGrpc.MyFunction(inputValue);
     }
 }
