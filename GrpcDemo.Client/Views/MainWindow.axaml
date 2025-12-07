@@ -14,7 +14,16 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
+    <StackPanel Margin="20" Spacing="10">
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="Input Value:" />
+        <TextBox Text="{Binding InputValue}" Width="100"/>
 
+        <Button Content="Call MyFunction" Command="{Binding MyFunctionCommand}" Width="150"/>
+
+        <TextBlock Text="Result:"/>
+        <TextBlock Text="{Binding ResultValue}" FontSize="20" />
+    </StackPanel>
+    
 </Window>
