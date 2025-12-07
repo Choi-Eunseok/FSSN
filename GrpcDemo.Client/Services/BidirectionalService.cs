@@ -43,16 +43,12 @@ public class BidirectionalService : IAsyncDisposable
         }, _cts.Token);
     }
     
-    public async Task SendMessagesAsync(
-        IEnumerable<string> messages,
-        CancellationToken cancellationToken = default)
+    public async Task SendMessagesAsync(IEnumerable<string> messages)
     {
-        using var call = _client.GetServerResponse(cancellationToken: cancellationToken);
-            
         foreach (var msg in messages)
         {
             AddToLogs?.Invoke($"[client to server] {msg}");
-            await call.RequestStream.WriteAsync(new Message { Message_ = msg }, cancellationToken);
+            await _call.RequestStream.WriteAsync(new Message { Message_ = msg }, _cts.Token);
         }
     }
 
