@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Bidirectional;
@@ -13,7 +14,7 @@ public class BidirectionalService : IAsyncDisposable
     private AsyncDuplexStreamingCall<Message, Message>? _call;
     private readonly CancellationTokenSource _cts = new();
     
-    public event Action<string>? MessageReceived;
+    public event Action<string>? AddToLogs;
 
     public BidirectionalService()
     {
@@ -32,22 +33,27 @@ public class BidirectionalService : IAsyncDisposable
                 await foreach (var resp in _call.ResponseStream.ReadAllAsync(_cts.Token))
                 {
                     var text = resp.Message_;
-                    MessageReceived?.Invoke(text);
+                    AddToLogs?.Invoke($"[server to client] {text}");
                 }
             }
             catch (Exception ex)
             {
-                MessageReceived?.Invoke($"[ERROR] {ex.Message}");
+                AddToLogs?.Invoke($"[ERROR] {ex.Message}");
             }
         }, _cts.Token);
     }
     
-    public async Task SendAsync(string text)
+    public async Task SendMessagesAsync(
+        IEnumerable<string> messages,
+        CancellationToken cancellationToken = default)
     {
-        if (_call == null)
-            return;
-
-        await _call.RequestStream.WriteAsync(new Message { Message_ = text });
+        using var call = _client.GetServerResponse(cancellationToken: cancellationToken);
+            
+        foreach (var msg in messages)
+        {
+            AddToLogs?.Invoke($"[client to server] {msg}");
+            await call.RequestStream.WriteAsync(new Message { Message_ = msg }, cancellationToken);
+        }
     }
 
     private async Task CompleteAsync()

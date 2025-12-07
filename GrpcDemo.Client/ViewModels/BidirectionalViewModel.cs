@@ -43,14 +43,7 @@ public partial class BidirectionalViewModel : ViewModelBase, IAsyncDisposable
 
     public BidirectionalViewModel()
     {
-        _service.MessageReceived += text =>
-        {
-            Dispatcher.UIThread.Post(() =>
-            {
-                Logs.Add($"[server to client] {text}");
-            });
-        };
-        
+        _service.AddToLogs += text => { Dispatcher.UIThread.Post(() => { Logs.Add(text); }); };
         _ = _service.StartAsync();
     }
 
@@ -65,11 +58,7 @@ public partial class BidirectionalViewModel : ViewModelBase, IAsyncDisposable
             message5
         };
         
-        foreach (var msg in messages)
-        {
-            Logs.Add($"[client to server] {msg}");
-            await _service.SendAsync(msg);
-        }
+        await _service.SendMessagesAsync(messages);
     }
     
     public async ValueTask DisposeAsync()
