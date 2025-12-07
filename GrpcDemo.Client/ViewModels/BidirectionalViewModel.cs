@@ -27,7 +27,7 @@ public partial class BidirectionalViewModel : ViewModelBase, IAsyncDisposable
     [ObservableProperty]
     private string message5 = "message #5";
     
-    private ObservableCollection<string> _logs;
+    private ObservableCollection<string> _logs = [];
     
     public ObservableCollection<string> Logs
     {
@@ -43,8 +43,6 @@ public partial class BidirectionalViewModel : ViewModelBase, IAsyncDisposable
 
     public BidirectionalViewModel()
     {
-        Logs = [];
-        
         _service.MessageReceived += text =>
         {
             Dispatcher.UIThread.Post(() =>

@@ -6,6 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GrpcDemo.Client.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        Width="800"
+        Height="600"
         Icon="/Assets/avalonia-logo.ico"
         Title="GrpcDemo.Client">
 
@@ -26,6 +28,8 @@
                     Command="{Binding ShowBidirectionalCommand}" />
             <Button Content="Client Streaming"
                     Command="{Binding ShowClientStreamingCommand}" />
+            <Button Content="Server Streaming"
+                    Command="{Binding ShowServerStreamingCommand}" />
         </StackPanel>
         <Border DockPanel.Dock="Left"
                 BorderBrush="DarkGray"

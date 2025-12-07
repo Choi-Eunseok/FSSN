@@ -13,15 +13,10 @@ public class ServerStreamingService : ServerStreaming.ServerStreamingBase
     {
         var n = request.Value;
         LogManager.Log(source: "ServerStreaming", direction: "Info", message: $"Server processing gRPC server-streaming {{value = {n}}}.");
-        
-        var messages = new[]
-        {
-            "message #1",
-            "message #2",
-            "message #3",
-            "message #4",
-            "message #5"
-        };
+
+        var messages = new List<string>();
+        for (var i = 1; i <= n; i++)
+            messages.Add($"message #{i}");
         
         foreach (var text in messages)
         {

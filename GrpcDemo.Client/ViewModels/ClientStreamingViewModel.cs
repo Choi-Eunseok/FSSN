@@ -13,9 +13,9 @@ public partial class ClientStreamingViewModel : ViewModelBase
     private readonly ClientStreamingService _service = new();
 
     [ObservableProperty]
-    private string countText;
+    private string countText = "5";
     
-    private ObservableCollection<ClientStreamingMessageItemViewModel> _messages;
+    private ObservableCollection<ClientStreamingMessageItemViewModel> _messages = [];
     
     public ObservableCollection<ClientStreamingMessageItemViewModel> Messages
     {
@@ -23,7 +23,7 @@ public partial class ClientStreamingViewModel : ViewModelBase
         set => SetProperty(ref _messages, value);
     }
     
-    private ObservableCollection<string> _logs;
+    private ObservableCollection<string> _logs = [];
     
     public ObservableCollection<string> Logs
     {
@@ -35,13 +35,6 @@ public partial class ClientStreamingViewModel : ViewModelBase
     private void GenerateMessages() => GenerateMultipleMessages();
     [RelayCommand]
     private async Task SendAll() => await SendAllAsync();
-
-    public ClientStreamingViewModel()
-    {
-        countText = "5";
-        Messages = [];
-        Logs = [];
-    }
 
     private void GenerateMultipleMessages()
     {

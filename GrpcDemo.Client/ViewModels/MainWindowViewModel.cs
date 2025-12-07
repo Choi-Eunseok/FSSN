@@ -44,4 +44,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
         CurrentView = new ClientStreamingView();
     }
+    
+    [RelayCommand]
+    private async Task ShowServerStreaming()
+    {
+        if (CurrentView.DataContext is IAsyncDisposable disposable)
+            await disposable.DisposeAsync();
+
+        CurrentView = new ServerStreamingView();
+    }
 }
