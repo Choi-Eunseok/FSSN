@@ -24,12 +24,12 @@
                     Spacing="8">
             <Button Content="Hello gRPC"
                     Command="{Binding ShowHelloCommand}" />
-            <Button Content="Bidirectional"
-                    Command="{Binding ShowBidirectionalCommand}" />
             <Button Content="Client Streaming"
                     Command="{Binding ShowClientStreamingCommand}" />
             <Button Content="Server Streaming"
                     Command="{Binding ShowServerStreamingCommand}" />
+            <Button Content="Bidirectional"
+                    Command="{Binding ShowBidirectionalCommand}" />
         </StackPanel>
         <Border DockPanel.Dock="Left"
                 BorderBrush="DarkGray"
