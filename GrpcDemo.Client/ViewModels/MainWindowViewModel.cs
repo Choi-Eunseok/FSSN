@@ -35,4 +35,13 @@ public partial class MainWindowViewModel : ViewModelBase
 
         CurrentView = new BidirectionalView();
     }
+    
+    [RelayCommand]
+    private async Task ShowClientStreaming()
+    {
+        if (CurrentView.DataContext is IAsyncDisposable disposable)
+            await disposable.DisposeAsync();
+
+        CurrentView = new ClientStreamingView();
+    }
 }

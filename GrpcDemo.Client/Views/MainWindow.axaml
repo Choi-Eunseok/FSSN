@@ -24,6 +24,8 @@
                     Command="{Binding ShowHelloCommand}" />
             <Button Content="Bidirectional"
                     Command="{Binding ShowBidirectionalCommand}" />
+            <Button Content="Client Streaming"
+                    Command="{Binding ShowClientStreamingCommand}" />
         </StackPanel>
         <Border DockPanel.Dock="Left"
                 BorderBrush="DarkGray"

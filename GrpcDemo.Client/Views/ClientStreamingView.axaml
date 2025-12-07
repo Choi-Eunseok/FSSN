@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:GrpcDemo.Client.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GrpcDemo.Client.Views.ClientStreamingView"
+             x:DataType="vm:ClientStreamingViewModel">
+    <UserControl.DataContext>
+        <vm:ClientStreamingViewModel />
+    </UserControl.DataContext>
+    
+    <DockPanel Margin="8" >
+        
+        <ListBox ItemsSource="{Binding Logs}"
+                 DockPanel.Dock="Top"
+                 Height="250"
+                 Margin="0,0,0,8" />
+        
+        <StackPanel DockPanel.Dock="Top"
+                    Orientation="Horizontal"
+                    Spacing="4"
+                    Margin="0,0,0,8">
+            <TextBlock Text="개수:"
+                       VerticalAlignment="Center" />
+            <TextBox Text="{Binding CountText, UpdateSourceTrigger=PropertyChanged}"
+                     Width="60"
+                     VerticalAlignment="Center" />
+            <Button Content="Generate"
+                    Command="{Binding GenerateMessagesCommand}"
+                    VerticalAlignment="Center" />
+            
+            <Button Content="Send all"
+                    Command="{Binding SendAllCommand}"
+                    Margin="16,0,0,0"
+                    VerticalAlignment="Center" />
+        </StackPanel>
+        
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Messages}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ClientStreamingMessageItemViewModel">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,2">
+                            <TextBlock Text="{Binding Index}"
+                                       Width="30"
+                                       VerticalAlignment="Center" />
+                            <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="400" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>
