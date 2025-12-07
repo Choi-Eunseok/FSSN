@@ -3,6 +3,7 @@
         xmlns:vm="using:GrpcDemo.Dashboard.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:behaviors="clr-namespace:GrpcDemo.Dashboard.Behaviors"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GrpcDemo.Dashboard.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -25,6 +26,9 @@
 
         <ListBox ItemsSource="{Binding Logs}"
                  Margin="8" >
+            <Interaction.Behaviors>
+                <behaviors:ScrollOnNewItemBehavior />
+            </Interaction.Behaviors>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock

@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:GrpcDemo.Client.ViewModels"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviors="clr-namespace:GrpcDemo.Client.Behaviors"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GrpcDemo.Client.Views.BidirectionalView"
              x:DataType="vm:BidirectionalViewModel">
@@ -16,7 +17,11 @@
         <ListBox ItemsSource="{Binding Logs}"
                  DockPanel.Dock="Top"
                  Height="250"
-                 Margin="0,0,0,8" />
+                 Margin="0,0,0,8" >
+            <Interaction.Behaviors>
+                <behaviors:ScrollOnNewItemBehavior />
+            </Interaction.Behaviors>
+        </ListBox>
         
         <StackPanel Orientation="Vertical"
                     DockPanel.Dock="Bottom"
