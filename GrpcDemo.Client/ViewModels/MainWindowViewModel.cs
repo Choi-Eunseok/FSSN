@@ -1,24 +1,28 @@
-﻿using System.Threading.Tasks;
+﻿
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using GrpcDemo.Client.Services;
 
 namespace GrpcDemo.Client.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private readonly HelloGrpcService _helloGrpc = new();
+    [ObservableProperty]
+    private ViewModelBase currentView;
     
-    [ObservableProperty]
-    private int inputValue;
-
-    [ObservableProperty]
-    private int resultValue;
-
-    [RelayCommand]
-    private async Task MyFunction()
+    public HelloGrpcViewModel HelloGrpc { get; }
+    public BidirectionalViewModel Bidirectional { get; }
+    
+    public IRelayCommand ShowHelloCommand { get; }
+    public IRelayCommand ShowBidirectionalCommand { get; }
+    
+    public MainWindowViewModel()
     {
-        ResultValue = await _helloGrpc.MyFunction(InputValue);
+        HelloGrpc = new HelloGrpcViewModel();
+        Bidirectional = new BidirectionalViewModel();
+        
+        CurrentView = HelloGrpc;
+        
+        ShowHelloCommand = new RelayCommand(() => CurrentView = HelloGrpc);
+        ShowBidirectionalCommand = new RelayCommand(() => CurrentView = Bidirectional);
     }
-    
 }

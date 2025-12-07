@@ -15,15 +15,24 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <StackPanel Margin="20" Spacing="10">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left"
+                    Orientation="Vertical"
+                    Margin="8"
+                    Spacing="8">
+            <Button Content="Hello gRPC"
+                    Command="{Binding ShowHelloCommand}" />
+            <Button Content="Bidirectional"
+                    Command="{Binding ShowBidirectionalCommand}" />
+        </StackPanel>
+        <Border DockPanel.Dock="Left"
+                BorderBrush="DarkGray"
+                Margin="4 8"
+                BorderThickness="0 0 2 0"/>
 
-        <TextBlock Text="Input Value:" />
-        <TextBox Text="{Binding InputValue}" Width="100"/>
-
-        <Button Content="Call MyFunction" Command="{Binding MyFunctionCommand}" Width="150"/>
-
-        <TextBlock Text="Result:"/>
-        <TextBlock Text="{Binding ResultValue}" FontSize="20" />
-    </StackPanel>
+        <!-- 실제 화면이 바뀌는 영역 -->
+        <ContentControl Content="{Binding CurrentView}"
+                        Margin="8" />
+    </DockPanel>
     
 </Window>

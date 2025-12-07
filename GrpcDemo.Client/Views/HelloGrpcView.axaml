@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:GrpcDemo.Client.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GrpcDemo.Client.Views.HelloGrpcView"
+             x:DataType="vm:HelloGrpcViewModel">
+    <UserControl.DataContext>
+        <vm:HelloGrpcViewModel />
+    </UserControl.DataContext>
+    
+    <StackPanel Margin="20"
+                Spacing="10"
+                HorizontalAlignment="Left">
+        <TextBlock Text="Input Value:" />
+        <TextBox Text="{Binding InputValue}"
+                 Width="100"/>
+        <Button Content="Call MyFunction"
+                Command="{Binding MyFunctionCommand}"/>
+        <TextBlock Text="Result:"/>
+        <TextBlock Text="{Binding ResultValue}"
+                   FontSize="20" />
+    </StackPanel>
+</UserControl>
