@@ -41,7 +41,7 @@ public partial class ClientStreamingViewModel : ViewModelBase
         var n = int.Parse(countText);
         Messages.Clear();
 
-        for (int i = 1; i <= n; i++)
+        for (var i = 1; i <= n; i++)
         {
             Messages.Add(new ClientStreamingMessageItemViewModel
             {
