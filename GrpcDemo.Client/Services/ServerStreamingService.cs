@@ -7,7 +7,7 @@ using Serverstreaming;
 
 namespace GrpcDemo.Client.Services;
 
-public class ServerStreamingService : IAsyncDisposable
+public class ServerStreamingService
 {
     private readonly ServerStreaming.ServerStreamingClient _client;
     private readonly CancellationTokenSource _cts = new();
@@ -38,11 +38,5 @@ public class ServerStreamingService : IAsyncDisposable
         {
             MessageReceived?.Invoke($"[ERROR] {ex.Message}");
         }
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        await _cts.CancelAsync();
-        _cts.Dispose();
     }
 }
