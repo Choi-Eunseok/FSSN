@@ -24,5 +24,30 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="Google.Protobuf" Version="3.33.2" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.76.0-pre1" />
+        <PackageReference Include="Grpc.Tools" Version="2.76.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Protos\bidirectional-streaming\bidirectional.proto">
+          <GrpcServices>Client</GrpcServices>
+          <ProtoRoot>Protos</ProtoRoot>
+      </Protobuf>
+      <Protobuf Include="Protos\clientstreaming\clientstreaming.proto">
+          <GrpcServices>Client</GrpcServices>
+          <ProtoRoot>Protos</ProtoRoot>
+      </Protobuf>
+      <Protobuf Include="Protos\hello_gRPC\hello_grpc.proto">
+          <GrpcServices>Client</GrpcServices>
+          <ProtoRoot>Protos</ProtoRoot>
+      </Protobuf>
+      <Protobuf Include="Protos\serverstreaming\serverstreaming.proto">
+          <GrpcServices>Client</GrpcServices>
+          <ProtoRoot>Protos</ProtoRoot>
+      </Protobuf>
     </ItemGroup>
 </Project>
