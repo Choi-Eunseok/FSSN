@@ -1,7 +1,7 @@
+using Grpc.Core;
 using GrpcDemo.Server.Logging;
 
 namespace GrpcDemo.Server.Services;
-using Grpc.Core;
 
 public class HelloGrpcService : MyService.MyServiceBase
 {
