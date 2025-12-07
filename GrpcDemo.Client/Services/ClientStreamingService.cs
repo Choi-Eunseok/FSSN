@@ -28,7 +28,7 @@ namespace GrpcDemo.Client.Services
                 if (string.IsNullOrWhiteSpace(msg))
                     continue;
 
-                await call.RequestStream.WriteAsync(new Message { Message_ = msg });
+                await call.RequestStream.WriteAsync(new Message { Message_ = msg }, cancellationToken);
             }
             
             await call.RequestStream.CompleteAsync();
