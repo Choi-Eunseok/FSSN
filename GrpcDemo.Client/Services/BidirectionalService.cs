@@ -45,7 +45,7 @@ public class BidirectionalService : IAsyncDisposable
     public async Task SendAsync(string text)
     {
         if (_call == null)
-            throw new InvalidOperationException("Streaming call is not started. Call StartAsync() first.");
+            return;
 
         await _call.RequestStream.WriteAsync(new Message { Message_ = text });
     }
